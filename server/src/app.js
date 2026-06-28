@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const { apiLimiter } = require('./middlewares/rateLimiter');
 const errorHandler = require('./middlewares/errorHandler');
@@ -41,6 +42,10 @@ app.use(
 app.use(express.json({ limit: '10kb' }));       // Reject suspiciously large JSON payloads
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
+// ── Cookie parser ─────────────────────────────────────────────────────────────
+// Required to read req.cookies.refreshToken in the auth refresh route.
+app.use(cookieParser());
+
 // ── HTTP request logging ──────────────────────────────────────────────────────
 // 'combined' in production (Apache-style, good for log drains)
 // 'dev' in development (colour-coded, compact)
@@ -69,18 +74,14 @@ app.get('/health', (req, res) => {
 // ── API routes ────────────────────────────────────────────────────────────────
 // Each module registers its own Express Router. We'll uncomment these
 // one by one as we build each phase.
-//
-// const authRoutes    = require('./modules/auth/auth.routes');
+
+const authRoutes = require('./modules/auth/auth.routes');
+app.use('/api/auth', authRoutes);
+
 // const userRoutes    = require('./modules/users/user.routes');
 // const productRoutes = require('./modules/products/product.routes');
 // const orderRoutes   = require('./modules/orders/order.routes');
 // const paymentRoutes = require('./modules/payments/payment.routes');
-//
-// app.use('/api/auth',     authRoutes);
-// app.use('/api/users',    userRoutes);
-// app.use('/api/products', productRoutes);
-// app.use('/api/orders',   orderRoutes);
-// app.use('/api/payments', paymentRoutes);
 
 // ── 404 handler ───────────────────────────────────────────────────────────────
 // Catches any request that didn't match a route above.
