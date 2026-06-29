@@ -1,0 +1,219 @@
+.page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-parchment);
+  padding: var(--space-8) var(--space-4);
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--color-surface-0);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10) var(--space-10);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Header ── */
+.cardHeader {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--color-text-primary);
+  display: inline-block;
+  margin-bottom: var(--space-5);
+}
+.logo span { color: var(--color-clay); }
+
+.title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* ── Role toggle (Register only) ── */
+.roleToggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  background: var(--color-surface-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.roleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.roleBtn i { font-size: 16px; }
+.roleBtn:hover { color: var(--color-text-primary); }
+
+.roleActive {
+  background: var(--color-surface-0);
+  color: var(--color-clay) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Banners ── */
+.errorBanner, .infoBanner, .vendorNote {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  font-size: 13px;
+  margin-bottom: var(--space-4);
+  line-height: 1.5;
+}
+.errorBanner i, .infoBanner i, .vendorNote i { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+.errorBanner {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+.infoBanner {
+  background: #EFF6FF;
+  color: #1E40AF;
+  border: 1px solid #BFDBFE;
+}
+.vendorNote {
+  background: var(--color-clay-light);
+  color: #7C3D20;
+  border: 1px solid #F5CEB0;
+}
+
+/* ── Form ── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.hint {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.forgotLink {
+  font-size: 12px;
+  color: var(--color-clay);
+  transition: color var(--transition);
+}
+.forgotLink:hover { color: var(--color-clay-dark); }
+
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background: var(--color-surface-0);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+.input:focus {
+  border-color: var(--color-clay);
+  box-shadow: 0 0 0 3px rgba(180, 90, 48, 0.12);
+}
+.input:disabled {
+  background: var(--color-surface-1);
+  cursor: not-allowed;
+}
+.input::placeholder { color: var(--color-text-muted); }
+
+/* ── Password strength bar ── */
+.strengthBar {
+  height: 3px;
+  background: var(--color-surface-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.strengthFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* ── Submit button ── */
+.submitBtn {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-clay);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  transition: background var(--transition), opacity var(--transition);
+}
+.submitBtn:hover:not(:disabled) { background: var(--color-clay-dark); }
+.submitBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Footer text ── */
+.terms, .switchText {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+.switchLink {
+  color: var(--color-clay);
+  font-weight: 500;
+  transition: color var(--transition);
+}
+.switchLink:hover { color: var(--color-clay-dark); }
