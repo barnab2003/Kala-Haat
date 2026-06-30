@@ -78,8 +78,10 @@ app.get('/health', (req, res) => {
 const authRoutes = require('./modules/auth/auth.routes');
 app.use('/api/auth', authRoutes);
 
+const productRoutes = require('./modules/products/product.routes');
+app.use('/api/products', productRoutes);
+
 // const userRoutes    = require('./modules/users/user.routes');
-// const productRoutes = require('./modules/products/product.routes');
 // const orderRoutes   = require('./modules/orders/order.routes');
 // const paymentRoutes = require('./modules/payments/payment.routes');
 
